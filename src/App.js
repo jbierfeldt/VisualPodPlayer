@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Nav from './components/nav.component.js';
 import Footer from './components/footer.component.js';
 
 import {
-  BrowserRouter as Router,
+  MemoryRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
@@ -20,6 +21,7 @@ import FeedContainer from './containers/feed.container';
 class App extends Component {
   constructor(props) {
     super(props);
+    console.log("app props", props);
     // this.feedUrl = 'http://sandbox.bierfeldt.me/podtest/files/rss.xml';
     // this.feedUrl = 'http://localhost:5000/podcast?url=http://feeds.gimletmedia.com/chompers.xml';
     // this.feedUrl = 'http://localhost:5000/podcast?url=http://sandbox.bierfeldt.me/podtest/files/podcast.xml';
@@ -38,6 +40,10 @@ class App extends Component {
     this.handleForward = this.handleForward.bind(this);
     this.handleBackward = this.handleBackward.bind(this);
     this.handleLoadEpisode = this.handleLoadEpisode.bind(this);
+  }
+
+  componentDidMount() {
+    console.log('loaded');
   }
 
   handleSongPlaying(audio) {
@@ -81,6 +87,7 @@ class App extends Component {
 
   handleLoadEpisode(data) {
     this.setState({
+      position: 0,
       track: {
         title: data.title,
         streamUrl: data.url,
@@ -119,30 +126,17 @@ class App extends Component {
       onFinishedPlaying={this.handleSongFinished.bind(this)}
       position={this.state.position}
       />
-      <ul>
-      <li><Link to="/">Player</Link></li>
-      <li><Link to="/feed">My Feed</Link></li>
-      </ul>
 
-      <hr/>
+      <Nav />
 
       <Route exact path="/" render={() =>
-        <PlayerContainer
-          onTogglePlay={this.handleTogglePlay}
-          onStop={this.handleStop}
-          onForward={this.handleForward}
-          onBackward={this.handleBackward}
-          position={this.state.position}
-          elapsed={this.state.elapsed}
-          total={this.state.total}
-          track={this.state.track}
-          progress={this.state.progress}
-          playStatus={this.state.playStatus}
-        />
-      }/>
-      <Route path="/feed" render={() =>
         <FeedContainer
           onLoadEpisode={this.handleLoadEpisode}
+        />
+      }/>
+      <Route path="/player" render={() =>
+        <PlayerContainer
+          track={this.state.track}
         />
       }/>
 

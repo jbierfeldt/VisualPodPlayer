@@ -4,8 +4,11 @@ import Details from './details.component.js';
 import Progress from './progress.component.js';
 import Player from './player.component.js';
 
+// import {shell} from 'electron';
+
 class Footer extends React.Component {
   render(){
+
     return(
       <div className="footer">
         <Details title={this.props.track.title} />
@@ -21,7 +24,6 @@ class Footer extends React.Component {
         forward={this.props.onForward}
         backward={this.props.onBackward}
         />
-        <p>Brought to you by Jackson.</p>
       </div>
     )
   }

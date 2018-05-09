@@ -9,22 +9,6 @@ body{
   font-family: sans-serif;
 }
 
-.scotch_music{
-  position: relative;
-}
-
-.search div, .search input {
-  width: 100%;
-}
-
-.search input {
-  border: none;
-  border-bottom: 2px solid rgb(243, 139, 114);
-  outline: none;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 5px;
-}
-
 .details h3{
   text-align: center;
   padding: 50px 10px;
@@ -34,7 +18,8 @@ body{
 
 .footer .details h3{
   text-align: center;
-  padding: 10px;
+  padding-top: 0px;
+  padding-bottom: 10px;
   color: white;
 }
 
@@ -57,8 +42,8 @@ body{
 .player .player__backward button,
 .player .player__forward button{
   background: transparent;
-  border: 1px solid rgb(243, 139, 114);
-  color: rgb(243, 139, 114);
+  border: 1px solid #F4743B;
+  color: #F4743B;
   width: 75px;
   height: 75px;
   border-radius: 100%;
@@ -70,8 +55,8 @@ body{
 .footer .player .player__forward button,
 .footer .player .player__main button{
   background: transparent;
-  border: 1px solid rgb(243, 139, 114);
-  color: rgb(243, 139, 114);
+  border: 1px solid #F4743B;
+  color: #F4743B;
   width: 25px;
   height: 25px;
   font-size: 15px;
@@ -89,16 +74,16 @@ body{
 .player .player__main button:hover,
 .player .player__backward button:hover,
 .player .player__forward button:hover{
-  color: rgba(243, 139, 114, 0.7);
-  border: 1px solid rgba(243, 139, 114, 0.7);
+  color: rgba(244, 116, 59, .7);
+  border: 1px solid rgba(244, 116, 59, .7);
 }
 
 .player .player__main {
-  border: 1px solid rgb(243, 139, 114);
+  border: 1px solid #F4743B;
 }
 
 .player .player__main button {
-  color: rgb(243, 139, 114);
+  color: #F4743B;
   background: transparent;
   width: 75px;
   height: 75px;
@@ -136,17 +121,19 @@ body{
 }
 
 .progress progress[value]::-webkit-progress-value {
-    background-color: rgb(243, 139, 114);
+    background-color: #F4743B;
     border-radius: 2px;
     background-size: 35px 20px, 100% 100%, 100% 100%;
 }
 
 .footer{
   color: white;
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   width: 100%;
-  background: #524C4C;
+  background: #483C46;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .footer p{
@@ -160,4 +147,59 @@ body{
 .footer .soundcloud{
   height: 25px;
   width: auto;
+}
+
+.mainContainer {
+  margin-bottom: 160px;
+  margin-top: 50px;
+}
+
+.playerContainer {
+  height: 100vh;
+}
+
+.playerContainer {
+  background-size: 100vw!important;
+}
+
+.nav {
+  color: white;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  background: #483C46;
+  margin: 0 auto;
+}
+
+.nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav ul li {
+  display: inline;
+}
+
+.nav ul li a {
+  color: white;
+  display: inline-block;
+  text-align: center;
+  height: 100%;
+  width: 50%;
+  padding-left: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.nav ul li a.active {
+  box-shadow: inset 0px 0px 25px rgba(0,0,0,0.5);
+}
+
+.nav #feeds a {
+  background-color: #3C6E71;
+}
+
+.nav #player a {
+  background-color: #70AE6E;
 }
