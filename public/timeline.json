@@ -1,0 +1,97 @@
+{
+  "timeline_version": 1,
+  "rss_feed": "http://sandbox.bierfeldt.me/podtest/files/rss.xml",
+  "rss_item_guid": "http://sandbox.bierfeldt.me/podtest/files/ep1/ep1.mp3",
+  "horizontal_image": {
+    "file": "http://sandbox.bierfeldt.me/podtest/files/logo.jpg",
+    "alt": "The Nook Logo"
+  },
+  "audio_duration": 1879200,
+  "speakers": [
+    {
+      "id": 0,
+      "name": "Jackson Bierrfeldt",
+      "portrait": "https://pbs.twimg.com/profile_images/812326979676540928/pk0w83eC_400x400.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Christian Belanger",
+      "portrait": "https://pbs.twimg.com/profile_images/911386882159910913/uBuyYeGx_400x400.jpg"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "chapter",
+      "timestamp": 0,
+      "title": "Introduction",
+      "image": {
+        "file": "http://guysmileyshow.com/demo_episode/guysmiley.jpg",
+        "caption": "Guy Smiley in spotlight"
+      },
+      "summary": "The beginning of another great episode. Guy introduces our guest.",
+      "annotations": [
+        {
+          "type": "music",
+          "timestamp": 32000,
+          "artist": "Pete Seeger ft. Oscar the Grouch",
+          "title": "Garbage",
+          "album": "Pete Seeger & Brother Kirk Visit Sesame Street",
+          "image": {
+            "file": "http://guysmileyshow.com/demo_episode/boxer.JPG"
+          }
+        }
+      ]
+    },
+    {
+      "type": "chapter",
+      "timestamp": 48910,
+      "title": "Interview with Oscar",
+      "image": {
+        "file": "http://guysmileyshow.com/demo_episode/oscar.jpg",
+        "caption": "Guy Smiley frowning for camera"
+      },
+      "summary": "Oscar joins Guy Smiley in the studio.",
+      "annotations": [
+        {
+          "type": "quote",
+          "timestamp": 67880,
+          "attribution": "Oscar the Grouch",
+          "text": "I actually like garbage."
+        },
+        {
+          "type": "transcript",
+          "timestamp": 67880,
+          "speaker": 1,
+          "text": "It started out as method acting, but now I actually like garbage.",
+          "words": [
+            {
+              "text": "It",
+              "offset":0
+            },
+            {
+              "text": "started out as",
+              "offset":300
+            },
+            {
+              "text": "method acting,",
+              "offset":1510
+            },
+            {
+              "text": "but now I",
+              "offset":1901
+            },
+            {
+              "text": "actually like",
+              "offset":2178
+            },
+            {
+              "text": "garbage.",
+              "offset":3100
+            }
+
+          ]
+        }
+      ]
+    }
+  ]
+}

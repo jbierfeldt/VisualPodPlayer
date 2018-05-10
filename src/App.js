@@ -32,7 +32,9 @@ class App extends Component {
       elapsed: '00:00',
       total: '00:00',
       position: 0,
-      progress: 0
+      progress: 0,
+      loadProgress: 0,
+      buffer: false
     }
 
     this.handleTogglePlay = this.handleTogglePlay.bind(this);
@@ -53,6 +55,19 @@ class App extends Component {
       progress: audio.position / audio.duration,
       position: audio.position,
     });
+  }
+
+  handleSongLoading(sound) {
+    console.log("buffering?", sound);
+    this.setState({
+      loadProgress: sound.bytesLoaded,
+      buffer: sound.isBuffering
+    })
+  }
+
+  // TOdo
+  handleSeek (pos) {
+    null;
   }
 
   handleSongFinished () {
@@ -123,6 +138,8 @@ class App extends Component {
       url={this.state.track.streamUrl}
       playStatus={this.state.playStatus}
       onPlaying={this.handleSongPlaying.bind(this)}
+      onLoading={this.handleSongLoading.bind(this)}
+      autoLoad={true}
       onFinishedPlaying={this.handleSongFinished.bind(this)}
       position={this.state.position}
       />
@@ -148,8 +165,10 @@ class App extends Component {
         playStatus={this.state.playStatus}
         track={this.state.track}
         progress={this.state.progress}
+        loadProgress={this.state.loadProgress}
         elapsed={this.state.elapsed}
         total={this.state.total}
+        buffer={this.state.buffer}
       />
       </div>
       </Router>

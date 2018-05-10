@@ -23,7 +23,7 @@ class Nav extends React.Component {
 
   render(){
     return(
-      <div className="nav">
+      <div className="navigation">
       <ul>
       <li id="feeds"><NavLink activeOnlyWhenExact={true} to="/" label="Feeds" /></li>
       <li id="player"><NavLink to="/player" label="Player" /></li>

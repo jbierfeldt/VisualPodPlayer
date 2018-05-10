@@ -6,22 +6,14 @@ import Axios from 'axios';
 import parsePodcast from 'node-podcast-parser';
 
 import Search from '../components/search.component.js'
+import PodcastDetails from '../components/podcastDetails.component.js'
+import PodcastList from '../components/podcastList.component.js'
 
 // PlayerContainer class
 class FeedContainer extends React.Component {
   // PlayerContainer constructor
   constructor(props) {
     super(props);
-    console.log("ev");
-    this.feedUrl = 'http://sandbox.bierfeldt.me/podtest/files/rss.xml';
-    // this.feedUrl = 'http://feeds.gimletmedia.com/chompers';
-    // this.feedUrl = 'http://feeds.gimletmedia.com/hearreplyall';
-
-    this.defaultFeeds = [
-      {title: "Chompers", url: "http://feeds.gimletmedia.com/chompers"},
-      {title: "Reply All", url: "http://feeds.gimletmedia.com/hearreplyall"},
-      {title: "The Nook", url: "http://sandbox.bierfeldt.me/podtest/files/rss.xml"}
-    ]
 
     this.state = {
       title: null,
@@ -31,18 +23,14 @@ class FeedContainer extends React.Component {
     }
 
     this.handleOnSearch = this.handleOnSearch.bind(this);
+    this.handleParseFeedUrl = this.handleParseFeedUrl.bind(this);
   }
-
-  // componentDidMount lifecycle method. Called once a component is loaded
-  // componentDidMount() {
-  //   // this.parseFeedUrl(this.feedUrl);
-  // }
 
   handleOnSearch (url) {
     this.parseFeedUrl(url);
   }
 
-  parseFeedUrl (url) {
+  handleParseFeedUrl (url) {
     let _this = this;
     if (process.env.NODE_ENV === 'development') {
       url = 'http://localhost:5000/podcast?url=' + url;
@@ -87,43 +75,24 @@ class FeedContainer extends React.Component {
 
   // Render method
   render () {
-    const feedRows = [];
-    for (let i = 0; i < this.defaultFeeds.length; i++) {
-      feedRows.push(
-        <li>
-        <div style={{color: 'blue', cursor: 'pointer', textDecoration: 'underline'}}
-        onClick={() => this.parseFeedUrl(this.defaultFeeds[i].url)}>
-          {this.defaultFeeds[i].title}
-        </div>
-        </li>
-      )
-    }
-    const episodesRows = [];
-    for (let i = 0; i < this.state.episodes.length; i++) {
-      episodesRows.push(
-        <li>
-          <div style={{color: 'blue', cursor: 'pointer', textDecoration: 'underline'}}
-          onClick={() => this.props.onLoadEpisode({
-          title: this.state.episodes[i].title,
-          url: this.state.episodes[i].url,
-          image: this.state.episodes[i].imageUrl
-          })}>
-            {this.state.episodes[i].title}
-          </div>
-        </li>
-      )
-    }
     return (
       <div className="mainContainer">
+
       <Search onSearch={this.handleOnSearch}/>
-      <ul>{feedRows}</ul>
-      <h3>{this.state.title}</h3>
-      {this.state.desc}
-      <img src={this.state.imageUrl} style={{height:'250px', width:'250px'}}/>
-      <h3>Episodes:</h3>
-      <ul>
-      {episodesRows}
-      </ul>
+
+      <PodcastList
+      onParseFeedUrl={this.handleParseFeedUrl}/>
+
+      {this.state.title ?
+        <PodcastDetails
+        title={this.state.title}
+        desc={this.state.desc}
+        imageUrl={this.state.imageUrl}
+        episodes={this.state.episodes}
+        onLoadEpisode={this.props.onLoadEpisode}/>
+      :
+        <div className="message">Select a Podcast or enter an RSS feed to see availible episodes!</div>
+      }
 
       </div>
     );

@@ -4,8 +4,6 @@ import Details from './details.component.js';
 import Progress from './progress.component.js';
 import Player from './player.component.js';
 
-// import {shell} from 'electron';
-
 class Footer extends React.Component {
   render(){
 
@@ -14,8 +12,10 @@ class Footer extends React.Component {
         <Details title={this.props.track.title} />
         <Progress
           progress={this.props.progress}
+          loadProgress={this.props.loadProgress}
           elapsed={this.props.elapsed}
           total={this.props.total}
+          buffer={this.props.buffer}
         />
         <Player
         togglePlay={this.props.onTogglePlay}

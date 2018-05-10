@@ -162,7 +162,7 @@ body{
   background-size: 100vw!important;
 }
 
-.nav {
+.navigationigation {
   color: white;
   position: fixed;
   top: 0px;
@@ -171,17 +171,17 @@ body{
   margin: 0 auto;
 }
 
-.nav ul {
+.navigation ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.nav ul li {
+.navigation ul li {
   display: inline;
 }
 
-.nav ul li a {
+.navigation ul li a {
   color: white;
   display: inline-block;
   text-align: center;
@@ -192,14 +192,14 @@ body{
   padding-bottom: 10px;
 }
 
-.nav ul li a.active {
+.navigation ul li a.active {
   box-shadow: inset 0px 0px 25px rgba(0,0,0,0.5);
 }
 
-.nav #feeds a {
+.navigation #feeds a {
   background-color: #3C6E71;
 }
 
-.nav #player a {
+.navigation #player a {
   background-color: #70AE6E;
 }
