@@ -16,19 +16,20 @@ class Progress extends React.Component {
       'progress-bar-animated': this.props.buffer == true
     });
 
-    const relativeCoords = (event) => {
-      const bounds = event.target.getBoundingClientRect();
+    const getSeekPosition = (event) => {
+      const bounds = event.currentTarget.getBoundingClientRect();
       const x = event.clientX - bounds.left;
       const pos = (x / bounds.width);
-      return pos;
+      console.log("progress", pos);
+      this.props.onSeek(pos);
     }
 
     return(
-      <div className="progress-wrapper">
+      <div className="progress-wrapper" style={{display: 'flex'}}>
         {/* Elapsed time */}
-        <span className="player__time-elapsed">{this.props.elapsed}</span>
+        <span className="player__time-elapsed" style={{paddingLeft: '10px'}}>{this.props.elapsed}</span>
         {/* Progress Bar */}
-        <div onClick={relativeCoords} className="progress" style={{margin: '0 auto', width: '50%'}}>
+        <div onClick={getSeekPosition} className="progress" style={{margin: '0 auto', width: '80%', position: 'relative', height: '2rem'}}>
           <div className={bufferClass} role="progressbar" style={{
             width: (this.props.loadProgress * 100) + "%",
             backgroundColor: 'rgba(244, 116, 59, 0.3)'}}
@@ -39,7 +40,8 @@ class Progress extends React.Component {
             width: (this.props.progress * 100) + "%",
             backgroundColor: 'rgb(244, 116, 59)',
             position: 'absolute',
-            height: 'inherit'}}
+            height: 'inherit',
+            maxWidth: 'inherit'}}
             aria-valuenow={this.props.progress * 100}
             aria-valuemin="0" aria-valuemax="100">
           </div>
@@ -48,7 +50,7 @@ class Progress extends React.Component {
            value={this.props.progress}
            max="1"></progress>
         */}
-         <span className="player__time-total">{this.props.total}</span>
+         <span className="player__time-total" style={{paddingRight: '10px'}}>{this.props.total}</span>
       </div>
     )
   }

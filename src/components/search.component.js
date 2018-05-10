@@ -11,9 +11,11 @@ class Search extends React.Component {
   render(){
 
     return(
-      <div className="podcast-rss-search">
-      <input ref="search" type="search" placeholder="Podcast RSS URL" />
-      <button onClick={this.handleSubmit.bind(this)}>Go</button>
+      <div class="input-group mb-3">
+        <input ref="search" type="search" class="form-control" placeholder="Podcast RSS URL" aria-label="Podcast RSS URL" aria-describedby="basic-addon2" />
+        <div class="input-group-append">
+          <button onClick={this.handleSubmit.bind(this)} class="btn btn-outline-secondary" type="button">Load Feed</button>
+        </div>
       </div>
     )
   }

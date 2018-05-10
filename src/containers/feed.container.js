@@ -22,12 +22,7 @@ class FeedContainer extends React.Component {
       episodes: []
     }
 
-    this.handleOnSearch = this.handleOnSearch.bind(this);
     this.handleParseFeedUrl = this.handleParseFeedUrl.bind(this);
-  }
-
-  handleOnSearch (url) {
-    this.parseFeedUrl(url);
   }
 
   handleParseFeedUrl (url) {
@@ -55,10 +50,13 @@ class FeedContainer extends React.Component {
           });
 
           for (let i = 0; i < data.episodes.length && i < 10; i++) {
+            console.log(data.episodes[i]);
             _this.setState({episodes: [..._this.state.episodes,
               {
                 title: data.episodes[i].title,
                 url: data.episodes[i].enclosure.url,
+                desc: data.episodes[i].description,
+                pubDate: data.episodes[i].published.toLocaleDateString(),
                 imageUrl: data.image
               }
             ]});
@@ -76,9 +74,14 @@ class FeedContainer extends React.Component {
   // Render method
   render () {
     return (
-      <div className="mainContainer">
 
-      <Search onSearch={this.handleOnSearch}/>
+      <div className="container mainContainer">
+
+        <div class="row">
+          <Search onSearch={this.handleParseFeedUrl}/>
+        </div>
+
+
 
       <PodcastList
       onParseFeedUrl={this.handleParseFeedUrl}/>

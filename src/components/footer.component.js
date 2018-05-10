@@ -16,6 +16,7 @@ class Footer extends React.Component {
           elapsed={this.props.elapsed}
           total={this.props.total}
           buffer={this.props.buffer}
+          onSeek={this.props.onSeek}
         />
         <Player
         togglePlay={this.props.onTogglePlay}

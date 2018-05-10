@@ -10,28 +10,36 @@ class PodcastDetails extends React.Component {
     const episodesRows = [];
     for (let i = 0; i < this.props.episodes.length; i++) {
       episodesRows.push(
-        <li>
-          <div style={{color: 'blue', cursor: 'pointer', textDecoration: 'underline'}}
-          onClick={() => this.props.onLoadEpisode({
-          title: this.props.episodes[i].title,
-          url: this.props.episodes[i].url,
-          image: this.props.episodes[i].imageUrl
-          })}>
-            {this.props.episodes[i].title}
+
+        <a style={{cursor: 'pointer'}} class="list-group-item list-group-item-action flex-column align-items-start"
+        onClick={() => this.props.onLoadEpisode({
+        title: this.props.episodes[i].title,
+        url: this.props.episodes[i].url,
+        image: this.props.episodes[i].imageUrl
+        })}>
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{this.props.episodes[i].title}</h5>
+            <small>{this.props.episodes[i].pubDate}</small>
           </div>
-        </li>
+          <p class="mb-1">{this.props.episodes[i].desc}</p>
+        </a>
+
       )
     }
 
     return(
-      <div>
-      <h3>{this.props.title}</h3>
-      <p>{this.props.desc}</p>
-      <img src={this.props.imageUrl} style={{height:'250px', width:'250px'}}/>
+      <div className="row">
+      <div className="col-6">
+        <h3>{this.props.title}</h3>
+        <img src={this.props.imageUrl} style={{width:'100%'}}/>
+      </div>
+      <div className="col-6">
+        <p>{this.props.desc}</p>
+      </div>
       <h3>Episodes:</h3>
-      <ul>
-      {episodesRows}
-      </ul>
+      <div class="list-group">
+        {episodesRows}
+      </div>
       </div>
     )
   }

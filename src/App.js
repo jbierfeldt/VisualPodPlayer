@@ -32,6 +32,7 @@ class App extends Component {
       elapsed: '00:00',
       total: '00:00',
       position: 0,
+      duration: 0,
       progress: 0,
       loadProgress: 0,
       buffer: false
@@ -42,6 +43,7 @@ class App extends Component {
     this.handleForward = this.handleForward.bind(this);
     this.handleBackward = this.handleBackward.bind(this);
     this.handleLoadEpisode = this.handleLoadEpisode.bind(this);
+    this.handleSeek = this.handleSeek.bind(this);
   }
 
   componentDidMount() {
@@ -54,6 +56,7 @@ class App extends Component {
       total: this.formatMilliseconds(audio.duration),
       progress: audio.position / audio.duration,
       position: audio.position,
+      duration: audio.duration
     });
   }
 
@@ -65,9 +68,12 @@ class App extends Component {
     })
   }
 
-  // TOdo
   handleSeek (pos) {
-    null;
+    console.log("app", pos, this.state.duration);
+    const targetPosition = this.state.duration * pos;
+    this.setState({
+      position: targetPosition
+    })
   }
 
   handleSongFinished () {
@@ -169,6 +175,7 @@ class App extends Component {
         elapsed={this.state.elapsed}
         total={this.state.total}
         buffer={this.state.buffer}
+        onSeek={this.handleSeek}
       />
       </div>
       </Router>
