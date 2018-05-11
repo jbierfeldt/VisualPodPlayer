@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import Axios from 'axios';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -10,6 +13,8 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+
+import {formatMilliseconds} from './utils/time.js';
 
 import Sound from 'react-sound';
 
@@ -35,7 +40,8 @@ class App extends Component {
       duration: 0,
       progress: 0,
       loadProgress: 0,
-      buffer: false
+      buffer: false,
+      timelineUrl: null
     }
 
     this.handleTogglePlay = this.handleTogglePlay.bind(this);
@@ -44,6 +50,7 @@ class App extends Component {
     this.handleBackward = this.handleBackward.bind(this);
     this.handleLoadEpisode = this.handleLoadEpisode.bind(this);
     this.handleSeek = this.handleSeek.bind(this);
+    this.handleJumpTo = this.handleJumpTo.bind(this);
   }
 
   componentDidMount() {
@@ -52,8 +59,8 @@ class App extends Component {
 
   handleSongPlaying(audio) {
     this.setState({
-      elapsed: this.formatMilliseconds(audio.position),
-      total: this.formatMilliseconds(audio.duration),
+      elapsed: formatMilliseconds(audio.position),
+      total: formatMilliseconds(audio.duration),
       progress: audio.position / audio.duration,
       position: audio.position,
       duration: audio.duration
@@ -68,6 +75,15 @@ class App extends Component {
     })
   }
 
+  // expects pos in milliseconds
+  handleJumpTo (pos) {
+    this.setState({
+      position: pos,
+      progress: pos / this.state.duration
+    })
+  }
+
+  // expects pos as a ratio
   handleSeek (pos) {
     console.log("app", pos, this.state.duration);
     const targetPosition = this.state.duration * pos;
@@ -109,34 +125,55 @@ class App extends Component {
   handleLoadEpisode(data) {
     this.setState({
       position: 0,
+      progress: 0,
+      elapsed: formatMilliseconds(0),
+      duration: (data.dur * 1000),
+      total: formatMilliseconds(data.dur * 1000), //convert to milliseconds
       track: {
         title: data.title,
         streamUrl: data.url,
         artworkUrl: data.image}
       });
-    console.log(this.state);
+
+    if (data.timelineUrl) {
+      this.getTimelineObject(data.timelineUrl);
+    } else {
+      this.setState({
+        timeline: null
+      });
+    }
   }
 
-  formatMilliseconds(milliseconds) {
-    // Format hours
-    var hours = Math.floor(milliseconds / 3600000);
-    milliseconds = milliseconds % 3600000;
+  getTimelineObject (timelineUrl) {
+    const _this = this;
+    Axios.get(timelineUrl)
+    .then(function (response) {
+      console.log("loaded timeline", response.data);
 
-    // Format minutes
-    var minutes = Math.floor(milliseconds / 60000);
-    milliseconds = milliseconds % 60000;
+      // add end property to annotations
+      for (let i = 0; i < response.data.annotations.length; i++) {
+        const obj = response.data.annotations[i];
+        const next = response.data.annotations[i+1];
 
-    // Format seconds
-    var seconds = Math.floor(milliseconds / 1000);
-    milliseconds = Math.floor(milliseconds % 1000);
+        if (next) {
+          Object.assign(obj, {end: next.timestamp});
+        } else {
+          Object.assign(obj, {end: response.data.audio_duration});
+        }
+      }
 
-    // Return as string
-    return (minutes < 10 ? '0' : '') + minutes + ':' +
-    (seconds < 10 ? '0' : '') + seconds;
+      _this.setState({
+        timeline: response.data
+      });
+
+    })
+    .catch(function (err) {
+      // If something goes wrong, let us know
+      console.log(err);
+    });
   }
 
   render() {
-    console.log(this.state);
     return (
       <Router>
       <div>
@@ -160,6 +197,9 @@ class App extends Component {
       <Route path="/player" render={() =>
         <PlayerContainer
           track={this.state.track}
+          timeline={this.state.timeline}
+          position={this.state.position}
+          onJumpTo={this.handleJumpTo}
         />
       }/>
 

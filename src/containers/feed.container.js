@@ -34,9 +34,11 @@ class FeedContainer extends React.Component {
 
     Axios.get(url)
     .then(function (response) {
+      console.log(response);
 
       // parse Podcast xml into js Object
       parsePodcast(response.data, (err, data) => {
+        console.log(data);
 
         if (err) {
           console.error(err);
@@ -55,9 +57,11 @@ class FeedContainer extends React.Component {
               {
                 title: data.episodes[i].title,
                 url: data.episodes[i].enclosure.url,
+                timeline: data.episodes[i].timeline,
                 desc: data.episodes[i].description,
                 pubDate: data.episodes[i].published.toLocaleDateString(),
-                imageUrl: data.image
+                imageUrl: data.image,
+                dur: data.episodes[i].duration
               }
             ]});
           }
