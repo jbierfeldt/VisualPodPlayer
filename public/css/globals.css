@@ -134,7 +134,7 @@ body{
   background: #483C46;
   padding-top: 15px;
   padding-bottom: 15px;
-  z-index: 1008;
+  z-index: 1021;
 }
 
 .footer p{
@@ -203,4 +203,42 @@ body{
 
 .navigation #player a {
   background-color: #70AE6E;
+}
+
+@keyframes swing-in{
+    0%{
+      transform: rotate(-15deg) translate(-3em,-1em);
+    }
+    100%{
+      transform: rotate(0deg) translate(0em, 0em);
+    }
+}
+
+@keyframes swing-out{
+    0%{
+      transform: rotate(0deg) translate(0em,0em);
+    }
+    100%{
+      transform: rotate(-15deg) translate(50%, 50%);
+    }
+}
+
+.card-enter {
+  opacity: 0.01;
+}
+
+.card-enter.card-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+  animation: swing-in 300ms ease-out;
+}
+
+.card-leave {
+  opacity: 1;
+}
+
+.card-leave.card-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+  animation: swing-out 300ms ease-in;
 }

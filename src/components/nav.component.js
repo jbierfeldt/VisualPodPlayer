@@ -16,10 +16,6 @@ const NavLink = ({ label, to, activeOnlyWhenExact }) => (
 );
 
 class Nav extends React.Component {
-  constructor(props) {
-    super(props)
-    console.log(this.props);
-  }
 
   render(){
     return(

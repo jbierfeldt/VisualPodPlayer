@@ -10,7 +10,7 @@
   "speakers": [
     {
       "id": 0,
-      "name": "Jackson Bierrfeldt",
+      "name": "Jackson Bierfeldt",
       "portrait": "https://pbs.twimg.com/profile_images/812326979676540928/pk0w83eC_400x400.jpg"
     },
     {
@@ -28,7 +28,13 @@
       "annotations": [
         {
           "type": "quote",
-          "timestamp": 22000,
+          "timestamp": 14000,
+          "attribution": "Jackson",
+          "text": "Hey can I record you?"
+        },
+        {
+          "type": "quote",
+          "timestamp": 24500,
           "attribution": "Christian",
           "text": "Sure..."
         }
@@ -38,6 +44,10 @@
       "type": "chapter",
       "timestamp": 25000,
       "title": "Introduction",
+      "image": {
+        "file": "https://images-gmi-pmc.edge-generalmills.com/c95a0455-70d0-4667-bc17-acfaf2894210.jpg",
+        "caption": "The brownies."
+      },
       "summary": "The doctor writes a prescription.",
       "annotations": [
         {
@@ -49,6 +59,38 @@
           "image": {
             "file": "http://guysmileyshow.com/demo_episode/boxer.JPG"
           }
+        },
+        {
+          "type": "quote",
+          "timestamp": 29000,
+          "attribution": "Jackson",
+          "text": "Hey can I record you?"
+        },
+        {
+          "type": "transcript",
+          "timestamp": 33000,
+          "speaker": 0,
+          "text": "I'm Jackson Bierfeldt.",
+          "words": [],
+          "image": {
+            "file": "https://pbs.twimg.com/profile_images/812326979676540928/pk0w83eC_400x400.jpg",
+            "caption": "Jackson Bierfeldt"
+          }
+        },
+        {
+          "type": "quote",
+          "timestamp": 35000,
+          "attribution": "Jackson",
+          "text": "Hey can I record you?"
+        },
+        {
+          "type": "image",
+          "timestamp": 55000,
+          "image": {
+            "file": "https://d3n8a8pro7vhmx.cloudfront.net/swipes/pages/172/attachments/original/1485892661/U-Chicago-quad.jpg",
+            "caption": "Photo of the UChicago main quadrangle."
+          },
+          "text": "The campus quad"
         }
       ]
     },
@@ -56,23 +98,25 @@
       "type": "chapter",
       "timestamp": 61000,
       "title": "Pre-Interview with Christian",
+      "image": {
+        "file": "https://pbs.twimg.com/profile_images/911386882159910913/uBuyYeGx_400x400.jpg",
+        "caption": "Christian"
+      },
       "summary": "Christian makes a prediction. The Odyssey narrative is established.",
       "annotations": [
         {
-          "type": "music",
-          "timestamp": 62000,
-          "artist": "Pete Seeger ft. Oscar the Grouch",
-          "title": "Garbage",
-          "album": "Pete Seeger & Brother Kirk Visit Sesame Street",
+          "type": "image",
+          "timestamp": 91000,
           "image": {
-            "file": "http://guysmileyshow.com/demo_episode/boxer.JPG"
+            "file": "https://content.artofmanliness.com/uploads/2012/11/homer.jpg",
+            "caption": "A ship"
           }
         }
       ]
     },
     {
       "type": "chapter",
-      "timestamp": 120000,
+      "timestamp": 123000,
       "title": "Ingestion",
       "image": {
         "file": "http://guysmileyshow.com/demo_episode/guysmiley.jpg",
@@ -81,14 +125,9 @@
       "summary": "Cheers! The doctor's warning is considered.",
       "annotations": [
         {
-          "type": "music",
-          "timestamp": 122000,
-          "artist": "Pete Seeger ft. Oscar the Grouch",
-          "title": "Garbage",
-          "album": "Pete Seeger & Brother Kirk Visit Sesame Street",
-          "image": {
-            "file": "http://guysmileyshow.com/demo_episode/boxer.JPG"
-          }
+          "type": "quote",
+          "timestamp": 155000,
+          "text": "After all, this was medical use."
         }
       ]
     },
@@ -103,14 +142,23 @@
       "summary": "First surprise of the night.",
       "annotations": [
         {
-          "type": "music",
-          "timestamp": 181000,
-          "artist": "Pete Seeger ft. Oscar the Grouch",
-          "title": "Garbage",
-          "album": "Pete Seeger & Brother Kirk Visit Sesame Street",
+          "type": "link",
+          "timestamp": 193000,
+          "text": "Want to get the kind of crispy crust Christian is talking about?",
           "image": {
-            "file": "http://guysmileyshow.com/demo_episode/boxer.JPG"
+            "file": "https://atmedia.imgix.net/2626348ebd579228657eede0c6dc377af02b6172",
+            "caption": "Some crispy brownies."
+          },
+          "link": {
+            "url": "https://www.thekitchn.com/perfectly-sweet-how-to-get-a-c-99408",
+            "text": "Find out here!"
           }
+        },
+        {
+          "type": "quote",
+          "timestamp": 208000,
+          "text": "The weed actually adds kind of a nice touch...",
+          "attribution": "Christian"
         }
       ]
     },

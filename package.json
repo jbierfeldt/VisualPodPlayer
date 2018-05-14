@@ -15,7 +15,9 @@
     "react-sound": "^1.2.0",
     "xml2js": "^0.4.19",
     "node-podcast-parser": "^2.1.0",
-    "react-router-dom": "^4.2.0"
+    "react-router-dom": "^4.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-scroll-to-component": "^1.0.2"
   },
   "main": "src/electron-starter.js",
   "homepage": "./",

@@ -19,7 +19,7 @@ class PodcastList extends React.Component {
     const feedRows = [];
     for (let i = 0; i < this.defaultFeeds.length; i++) {
       feedRows.push(
-        <div className="col-4" style={{cursor: 'pointer'}}
+        <div key={'podcast'+i} className="col-4" style={{cursor: 'pointer'}}
         onClick={() => this.props.onParseFeedUrl(this.defaultFeeds[i].url)}>
           <img src={this.defaultFeeds[i].imgurl} style={{width:'80%'}}/>
         </div>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Axios from 'axios';
 
+import Sound from 'react-sound';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -14,19 +16,15 @@ import {
   Link
 } from 'react-router-dom'
 
-import {formatMilliseconds} from './utils/time.js';
-
-import Sound from 'react-sound';
+import {formatMilliseconds, mixInEndStamp} from './utils/time.js';
 
 //Import Container component
 import PlayerContainer from './containers/player.container';
 import FeedContainer from './containers/feed.container';
 
-
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log("app props", props);
     // this.feedUrl = 'http://sandbox.bierfeldt.me/podtest/files/rss.xml';
     // this.feedUrl = 'http://localhost:5000/podcast?url=http://feeds.gimletmedia.com/chompers.xml';
     // this.feedUrl = 'http://localhost:5000/podcast?url=http://sandbox.bierfeldt.me/podtest/files/podcast.xml';
@@ -41,7 +39,7 @@ class App extends Component {
       progress: 0,
       loadProgress: 0,
       buffer: false,
-      timelineUrl: null
+      timeline: null
     }
 
     this.handleTogglePlay = this.handleTogglePlay.bind(this);
@@ -150,21 +148,14 @@ class App extends Component {
     .then(function (response) {
       console.log("loaded timeline", response.data);
 
-      // add end property to annotations
-      for (let i = 0; i < response.data.annotations.length; i++) {
-        const obj = response.data.annotations[i];
-        const next = response.data.annotations[i+1];
-
-        if (next) {
-          Object.assign(obj, {end: next.timestamp});
-        } else {
-          Object.assign(obj, {end: response.data.audio_duration});
-        }
-      }
+      // mixes in an end property for use with the player
+      mixInEndStamp(response.data.annotations, response.data.audio_duration);
 
       _this.setState({
         timeline: response.data
       });
+
+      console.log("fixed it up", _this.state.timeline);
 
     })
     .catch(function (err) {
@@ -174,6 +165,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("Render App");
     return (
       <Router>
       <div>

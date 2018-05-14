@@ -77,11 +77,12 @@ class FeedContainer extends React.Component {
 
   // Render method
   render () {
+    console.log("Render Feed Container");
     return (
 
       <div className="container mainContainer">
 
-        <div class="row">
+        <div className="row">
           <Search onSearch={this.handleParseFeedUrl}/>
         </div>
 
