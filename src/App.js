@@ -22,6 +22,8 @@ import {formatMilliseconds, mixInEndStamp} from './utils/time.js';
 import PlayerContainer from './containers/player.container';
 import FeedContainer from './containers/feed.container';
 
+import {getTimelineJson} from './utils/debug.js';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -53,6 +55,14 @@ class App extends Component {
 
   componentDidMount() {
     console.log('loaded');
+    // getTimelineJson('./timeline.json', (data) => {this.setState({timeline: data})});
+    // this.handleLoadEpisode(
+    //   {
+    //     dur: 260000,
+    //     tite: "Test Song",
+    //     url: "./ep1.mp3"
+    //   }
+    // )
   }
 
   handleSongPlaying(audio) {

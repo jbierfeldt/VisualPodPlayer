@@ -242,3 +242,33 @@ body{
   transition: opacity 300ms ease-in;
   animation: swing-out 300ms ease-in;
 }
+
+.transcript-container {
+  font-size: large;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.transcript-line-container {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.transcript-speaker-id {
+  float: left;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+}
+
+.transcript-speaker-id .speaker-name {
+  font-size: small;
+  text-align: center;
+}
+
+.transcript-speaker-id img {
+  border-radius: 50%;
+  width: 100%;
+}

@@ -11,7 +11,7 @@ class PodcastDetails extends React.Component {
     for (let i = 0; i < this.props.episodes.length; i++) {
       episodesRows.push(
 
-        <a style={{cursor: 'pointer'}} class="list-group-item list-group-item-action flex-column align-items-start"
+        <a key={i} style={{cursor: 'pointer'}} className="list-group-item list-group-item-action flex-column align-items-start"
         onClick={() => this.props.onLoadEpisode({
         title: this.props.episodes[i].title,
         url: this.props.episodes[i].url,
@@ -19,11 +19,11 @@ class PodcastDetails extends React.Component {
         image: this.props.episodes[i].imageUrl,
         dur: this.props.episodes[i].dur
         })}>
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{this.props.episodes[i].title}</h5>
+          <div className="d-flex w-100 justify-content-between">
+            <h5 className="mb-1">{this.props.episodes[i].title}</h5>
             <small>{this.props.episodes[i].pubDate}</small>
           </div>
-          <p class="mb-1">{this.props.episodes[i].desc}</p>
+          <p className="mb-1">{this.props.episodes[i].desc}</p>
         </a>
 
       )

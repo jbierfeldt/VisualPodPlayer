@@ -68,7 +68,7 @@ class PlayerContainer extends React.Component {
     }
 
     return (
-      <div className="container mainContainer">
+      <div className="container mainContainer" style={{maxWidth: "800px"}}>
         {this.props.timeline ?
           <div className="row">
             <div className="col-4 chapter-container">
