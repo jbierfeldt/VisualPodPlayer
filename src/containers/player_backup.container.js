@@ -7,7 +7,6 @@ import {formatMilliseconds, isActive} from '../utils/time.js';
 
 import Card from '../components/cards/card.component.js';
 import CardStack from '../components/cardstack.component.js';
-import FeedContainer from './feed.container.js';
 
 // PlayerContainer class
 class PlayerContainer extends React.Component {
@@ -32,8 +31,19 @@ class PlayerContainer extends React.Component {
     if (this.props.timeline) {
       const annotations = this.props.timeline.annotations;
       for (let i = 0; i < annotations.length; i++) {
+        chapters.push(
+          <a key={i}
+          style={{cursor: 'pointer'}}
+          className={getActiveClass(this.props.position, annotations[i].timestamp, annotations[i].end)}
+          onClick={() => this.props.onJumpTo(annotations[i].timestamp)}>
+            <div className="d-flex w-100 justify-content-between">
+              <h5 className="mb-1">{annotations[i].title}</h5>
+              <small>{formatMilliseconds(annotations[i].timestamp)}</small>
+            </div>
+            <p className="mb-1">{annotations[i].summary}</p>
+          </a>
+        );
 
-        // don't display current chapter as card
         if (isActive(this.props.position, annotations[i].timestamp, annotations[i].end)) {
           cards.push(
             <Card key={i} position={this.props.position} timelineData={this.props.timeline} data={this.props.timeline.annotations[i]} />
@@ -52,11 +62,22 @@ class PlayerContainer extends React.Component {
       }
     }
 
-    if (this.props.timeline) {
-      return <CardStack cards={cards} />;
-    } else {
-      return <p>No Timeline data to display :(</p>
-    }
+    return (
+      <div className="container view-container">
+        {this.props.timeline ?
+          <div className="row">
+            <div className="col-4 chapter-container sticky-top align-self-start">
+              <div className="list-group">
+                {chapters}
+              </div>
+            </div>
+            <CardStack cards={cards} />
+          </div>
+        :
+        <p>No Timeline data to display :(</p>
+        }
+      </div>
+    );
   }
 }
 

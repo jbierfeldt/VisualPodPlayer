@@ -75,7 +75,11 @@ class FeedContainer extends React.Component {
   render () {
     return (
 
-      <div className="container-fluid view-container">
+      <div>
+
+        <button onClick={this.props.onTogglePlay}>Play/Pause</button>
+        <button onClick={this.props.onForward}>Forward</button>
+        <button onClick={this.props.onBackward}>Back</button>
 
         <div className="row">
           <Search onSearch={this.handleParseFeedUrl}/>

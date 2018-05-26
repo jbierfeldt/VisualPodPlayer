@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import scrollToComponent from 'react-scroll-to-component';
 
 
@@ -22,18 +21,9 @@ class CardStack extends React.Component {
       React.cloneElement(element, {onUpdateScroll: this.handleOnUpdateScroll})
     );
 
-    console.log(this.props);
-
     return(
-      <div className="col-8 cardstack card-container">
-
-      <ReactCSSTransitionGroup
-        transitionName="card"
-        transitionEnterTimeout={300}
-        transitionLeaveTimeout={300}>
-
+      <div className="card-stack-container">
         {newCards}
-      </ReactCSSTransitionGroup>
       </div>
     )
   }

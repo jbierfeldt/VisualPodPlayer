@@ -6,8 +6,12 @@ import Sound from 'react-sound';
 
 import './App.css';
 
-import Nav from './components/nav.component.js';
-import Footer from './components/footer.component.js';
+import "../node_modules/slick-carousel/slick/slick.css";
+import "../node_modules/slick-carousel/slick/slick-theme.css";
+
+import Nav from './components/nav.component';
+import Footer from './components/footer.component';
+import SlideOut from './components/slideOut.component';
 
 import {
   MemoryRouter as Router,
@@ -39,7 +43,8 @@ class App extends Component {
       progress: 0,
       loadProgress: 0,
       buffer: false,
-      timeline: null
+      timeline: null,
+      sliderIsOpen: true
     }
 
     this.handleTogglePlay = this.handleTogglePlay.bind(this);
@@ -170,21 +175,48 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-      <div className="app-container">
-      <Sound
-      url={this.state.track.streamUrl}
-      playStatus={this.state.playStatus}
-      onPlaying={this.handleSongPlaying.bind(this)}
-      onLoading={this.handleSongLoading.bind(this)}
-      autoLoad={true}
-      onFinishedPlaying={this.handleSongFinished.bind(this)}
-      position={this.state.position}
-      />
+        <div className="container-fluid">
+          <Sound
+          url={this.state.track.streamUrl}
+          playStatus={this.state.playStatus}
+          onPlaying={this.handleSongPlaying.bind(this)}
+          onLoading={this.handleSongLoading.bind(this)}
+          autoLoad={true}
+          onFinishedPlaying={this.handleSongFinished.bind(this)}
+          position={this.state.position}
+          />
+
+          <div className="row">
+
+            {this.state.sliderIsOpen
+            ?
+              <div id="slide-container" className="col-xs-auto" style={{backgroundColor: 'lightblue'}}>
+                <SlideOut
+                  onLoadEpisode={this.handleLoadEpisode}
+                  onTogglePlay={this.handleTogglePlay}
+                  onForward={this.handleForward}
+                  onBackward={this.handleBackward}
+                />
+              </div>
+            :
+              null
+            }
+
+            <div id="player-container" className="col" style={{backgroundColor: 'lightgrey'}}>
+              <PlayerContainer
+              track={this.state.track}
+              timeline={this.state.timeline}
+              position={this.state.position}
+              onJumpTo={this.handleJumpTo}
+              />
+            </div>
+
+          </div>
 
       {/* <Nav /> */}
 
-      <Route exact path="/" render={() =>
+      {/*
+        <Route exact path="/" render={() =>
         <PlayerContainer
           track={this.state.track}
           timeline={this.state.timeline}
@@ -213,8 +245,9 @@ class App extends Component {
         buffer={this.state.buffer}
         onSeek={this.handleSeek}
       />
-      </div>
-      </Router>
+      */}
+
+        </div>
     );
   }
 }
