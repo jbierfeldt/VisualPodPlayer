@@ -1,12 +1,11 @@
 import React from 'react';
-
-import ClassNames from 'classnames';
+import ReactDOM from 'react-dom';
+import scrollToComponent from 'react-scroll-to-component';
 
 import {formatMilliseconds} from '../../utils/time.js';
 
 import TranscriptCard from './transcriptCard.component.js';
 
-import scrollToComponent from 'react-scroll-to-component';
 
 const ChapterCard = (props) => (
   <div className="card card-heading text-center">
@@ -113,21 +112,20 @@ class Card extends React.Component {
   constructor(props) {
     super(props);
     this.handleOnImageLoad = this.handleOnImageLoad.bind(this);
-    this.handleOnUpdateScroll = this.handleOnUpdateScroll.bind(this);
   }
 
   componentDidMount() {
-    console.log("mounted", this.props.data);
-    scrollToComponent(this, {align: 'bottom', offset: 200, duration: 500});
+    // scrollToComponent(this, {align: 'bottom', offset: 200, duration: 500});
+    // ReactDOM.findDOMNode(this).scrollIntoView({block: "end", behavior: "smooth"});
+    console.log(this.props);
+    this.props.onUpdateScroll();
   }
 
   // once image loads, recall scrollToComponent to account for updated div height
   handleOnImageLoad() {
-    scrollToComponent(this, {align: 'bottom', offset: 200, duration: 500});
-  }
-
-  handleOnUpdateScroll() {
-    scrollToComponent(this, {align: 'bottom', offset: 200, duration: 500});
+    // scrollToComponent(this, {align: 'bottom', offset: 200, duration: 500});
+    // ReactDOM.findDOMNode(this).scrollIntoView({block: "end", behavior: "smooth"});
+    this.props.onUpdateScroll();
   }
 
   componentWillUnmount() {
@@ -138,7 +136,7 @@ class Card extends React.Component {
       case "chapter": return (<ChapterCard onImageLoad={this.handleOnImageLoad} data={this.props.data} />)
       case "quote": return (<QuoteCard onImageLoad={this.handleOnImageLoad} data={this.props.data} />)
       case "music": return (<MusicCard onImageLoad={this.handleOnImageLoad} data={this.props.data} />)
-      case "transcript": return (<TranscriptCard position={this.props.position} timelineData={this.props.timelineData} onImageLoad={this.handleOnImageLoad} onUpdateScroll={this.handleOnUpdateScroll} data={this.props.data} />)
+      case "transcript": return (<TranscriptCard position={this.props.position} timelineData={this.props.timelineData} onImageLoad={this.handleOnImageLoad} onUpdateScroll={this.props.onUpdateScroll} data={this.props.data} />)
       case "image": return (<ImageCard onImageLoad={this.handleOnImageLoad} data={this.props.data} />)
       case "link": return (<LinkCard onImageLoad={this.handleOnImageLoad} data={this.props.data} />)
       default: return null

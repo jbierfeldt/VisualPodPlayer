@@ -10,8 +10,8 @@ class Player extends React.Component {
   render(){
     // Dynamic class names with ClassNames
     const playPauseClass = ClassNames({
-      'fa fa-play': this.props.playStatus == 'PLAYING' ? false : true,
-      'fa fa-pause': this.props.playStatus == 'PLAYING' ? true : false
+      'fa fa-play': this.props.playStatus === 'PLAYING' ? false : true,
+      'fa fa-pause': this.props.playStatus === 'PLAYING' ? true : false
     });
 
     // Return JSX

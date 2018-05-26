@@ -179,12 +179,6 @@
       "summary": "The doctor writes a prescription.",
       "annotations": [
         {
-          "type": "quote",
-          "timestamp": 29000,
-          "attribution": "Jackson",
-          "text": "Hey can I record you?"
-        },
-        {
           "type": "transcript",
           "timestamp": 33000,
           "speaker": 0,
@@ -193,12 +187,6 @@
             "file": "https://pbs.twimg.com/profile_images/812326979676540928/pk0w83eC_400x400.jpg",
             "caption": "Jackson Bierfeldt"
           }
-        },
-        {
-          "type": "quote",
-          "timestamp": 35000,
-          "attribution": "Jackson",
-          "text": "Hey can I record you?"
         },
         {
           "type": "image",
@@ -235,10 +223,6 @@
       "type": "chapter",
       "timestamp": 123000,
       "title": "Ingestion",
-      "image": {
-        "file": "http://guysmileyshow.com/demo_episode/guysmiley.jpg",
-        "caption": "Christian makes a very basic mistake."
-      },
       "summary": "Cheers! The doctor's warning is considered.",
       "annotations": [
         {
@@ -252,10 +236,6 @@
       "type": "chapter",
       "timestamp": 180000,
       "title": "First Reactions",
-      "image": {
-        "file": "http://guysmileyshow.com/demo_episode/guysmiley.jpg",
-        "caption": "Christian makes a very basic mistake."
-      },
       "summary": "First surprise of the night.",
       "annotations": [
         {
@@ -283,45 +263,13 @@
       "type": "chapter",
       "timestamp": 220000,
       "title": "An Ominous Prediction",
-      "image": {
-        "file": "http://guysmileyshow.com/demo_episode/guysmiley.jpg",
-        "caption": "Christian makes a very basic mistake."
-      },
-      "summary": "Jackson plays the role of Cassandra.",
-      "annotations": [
-        {
-          "type": "music",
-          "timestamp": 223000,
-          "artist": "Pete Seeger ft. Oscar the Grouch",
-          "title": "Garbage",
-          "album": "Pete Seeger & Brother Kirk Visit Sesame Street",
-          "image": {
-            "file": "http://guysmileyshow.com/demo_episode/boxer.JPG"
-          }
-        }
-      ]
+      "summary": "Jackson plays the role of Cassandra."
     },
     {
       "type": "chapter",
       "timestamp": 244000,
       "title": "Outro",
-      "image": {
-        "file": "http://guysmileyshow.com/demo_episode/guysmiley.jpg",
-        "caption": "Christian makes a very basic mistake."
-      },
-      "summary": "We ask Sean some questions.",
-      "annotations": [
-        {
-          "type": "music",
-          "timestamp": 245000,
-          "artist": "Pete Seeger ft. Oscar the Grouch",
-          "title": "Garbage",
-          "album": "Pete Seeger & Brother Kirk Visit Sesame Street",
-          "image": {
-            "file": "http://guysmileyshow.com/demo_episode/boxer.JPG"
-          }
-        }
-      ]
+      "summary": "We ask Sean some questions."
     }
   ]
 }

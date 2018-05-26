@@ -13,14 +13,13 @@ class Progress extends React.Component {
     // Dynamic class names with ClassNames
     const bufferClass = ClassNames({
       'progress-bar progress-bar-striped': true,
-      'progress-bar-animated': this.props.buffer == true
+      'progress-bar-animated': this.props.buffer === true
     });
 
     const getSeekPosition = (event) => {
       const bounds = event.currentTarget.getBoundingClientRect();
       const x = event.clientX - bounds.left;
       const pos = (x / bounds.width);
-      console.log("progress", pos);
       this.props.onSeek(pos);
     }
 

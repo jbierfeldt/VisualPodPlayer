@@ -19,10 +19,10 @@ class Nav extends React.Component {
 
   render(){
     return(
-      <div className="navigation">
+      <div className="navigation sticky-top">
       <ul>
-      <li id="feeds"><NavLink activeOnlyWhenExact={true} to="/" label="Feeds" /></li>
-      <li id="player"><NavLink to="/player" label="Player" /></li>
+      <li id="feeds"><NavLink activeOnlyWhenExact={true} to="/feeds" label="Feeds" /></li>
+      <li id="player"><NavLink to="/" label="Player" /></li>
       </ul>
       </div>
     )

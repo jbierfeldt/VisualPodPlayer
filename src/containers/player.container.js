@@ -1,29 +1,24 @@
 // React library
 import React from 'react';
-
 import ClassNames from 'classnames';
-
-import Details from '../components/details.component.js';
-import Card from '../components/cards/card.component.js';
-
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {formatMilliseconds, isActive} from '../utils/time.js';
+
+import Card from '../components/cards/card.component.js';
+import CardStack from '../components/cardstack.component.js';
 
 // PlayerContainer class
 class PlayerContainer extends React.Component {
   constructor(props) {
     super(props);
-    console.log("player container construct", this.props);
   }
 
   componentDidMount(props) {
-    console.log("player container mount", this.props);
   }
 
   // Render method
   render () {
-    console.log("Render Player Container render");
 
     let chapters = [];
     let cards = [];
@@ -68,23 +63,15 @@ class PlayerContainer extends React.Component {
     }
 
     return (
-      <div className="container mainContainer" style={{maxWidth: "800px"}}>
+      <div className="container view-container">
         {this.props.timeline ?
           <div className="row">
-            <div className="col-4 chapter-container">
-              <div className="list-group sticky-top">
+            <div className="col-4 chapter-container sticky-top align-self-start">
+              <div className="list-group">
                 {chapters}
               </div>
             </div>
-            <div className="col-8 card-container">
-            <ReactCSSTransitionGroup
-              transitionName="card"
-              transitionEnterTimeout={300}
-              transitionLeaveTimeout={300}>
-
-              {cards}
-            </ReactCSSTransitionGroup>
-            </div>
+            <CardStack cards={cards} />
           </div>
         :
         <p>No Timeline data to display :(</p>

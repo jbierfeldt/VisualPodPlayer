@@ -5,12 +5,8 @@ import {formatMilliseconds} from '../../utils/time.js';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Line extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
-    console.log("trans line mount");
     this.props.onUpdateScroll();
   }
 
@@ -18,7 +14,7 @@ class Line extends React.Component {
     return (
       <div className="transcript-line-container">
         <div className="transcript-speaker-id">
-          <img className="speaker-portrait" onLoad={this.props.onImageLoad} src={this.props.speaker.portraitUrl} />
+          <img className="speaker-portrait" alt="" onLoad={this.props.onImageLoad} src={this.props.speaker.portraitUrl} />
           <span className="speaker-name">
             {this.props.speaker.shortname}
           </span>
@@ -38,9 +34,6 @@ const Word = (props) => (
 );
 
 class TranscriptCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 
@@ -53,6 +46,7 @@ class TranscriptCard extends React.Component {
             if ((this.props.position - this.props.data.timestamp) > word.offset) {
               return (<Word key={index} text={word.text} />);
             }
+            return null;
           });
           return (
             <Line key={index} speaker={this.props.timelineData.speakers[line.speaker]}
@@ -61,6 +55,7 @@ class TranscriptCard extends React.Component {
             onImageLoad={this.props.onImageLoad} />
           )
         }
+        return null;
       });
     }
 

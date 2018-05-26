@@ -1,9 +1,5 @@
 import React from 'react';
 
-import Details from './details.component.js';
-import Progress from './progress.component.js';
-import Player from './player.component.js';
-
 class PodcastDetails extends React.Component {
   render(){
 
@@ -32,8 +28,7 @@ class PodcastDetails extends React.Component {
     return(
       <div className="row">
       <div className="col-3">
-        <h3>{this.props.title}</h3>
-        <img src={this.props.imageUrl} style={{width:'100%'}}/>
+        <img src={this.props.imageUrl} alt="" style={{width:'100%'}}/>
       </div>
       <div className="col-9">
         <p>{this.props.desc}</p>

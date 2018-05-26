@@ -4,7 +4,6 @@ import Axios from 'axios';
 
 import Sound from 'react-sound';
 
-import logo from './logo.svg';
 import './App.css';
 
 import Nav from './components/nav.component.js';
@@ -12,8 +11,7 @@ import Footer from './components/footer.component.js';
 
 import {
   MemoryRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 
 import {formatMilliseconds, mixInEndStamp} from './utils/time.js';
@@ -54,15 +52,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('loaded');
-    // getTimelineJson('./timeline.json', (data) => {this.setState({timeline: data})});
-    // this.handleLoadEpisode(
-    //   {
-    //     dur: 260000,
-    //     tite: "Test Song",
-    //     url: "./ep1.mp3"
-    //   }
-    // )
+    getTimelineJson('./timeline.json', (data) => {this.setState({timeline: data})});
+    this.handleLoadEpisode(
+      {
+        dur: 260,
+        title: "The Weed Brownies",
+        url: "./ep1.mp3"
+      }
+    )
   }
 
   handleSongPlaying(audio) {
@@ -76,7 +73,6 @@ class App extends Component {
   }
 
   handleSongLoading(sound) {
-    console.log("buffering?", sound);
     this.setState({
       loadProgress: sound.bytesLoaded,
       buffer: sound.isBuffering
@@ -87,16 +83,18 @@ class App extends Component {
   handleJumpTo (pos) {
     this.setState({
       position: pos,
-      progress: pos / this.state.duration
+      progress: pos / this.state.duration,
+      elapsed: formatMilliseconds(pos)
     })
   }
 
   // expects pos as a ratio
   handleSeek (pos) {
-    console.log("app", pos, this.state.duration);
     const targetPosition = this.state.duration * pos;
     this.setState({
-      position: targetPosition
+      position: targetPosition,
+      progress: targetPosition / this.state.duration,
+      elapsed: formatMilliseconds(targetPosition)
     })
   }
 
@@ -106,7 +104,6 @@ class App extends Component {
   }
 
   handleTogglePlay(){
-    // console.log(this);
     // Check current playing state
     if(this.state.playStatus === Sound.status.PLAYING){
       // Pause if playing
@@ -156,7 +153,6 @@ class App extends Component {
     const _this = this;
     Axios.get(timelineUrl)
     .then(function (response) {
-      console.log("loaded timeline", response.data);
 
       // mixes in an end property for use with the player
       mixInEndStamp(response.data.annotations, response.data.audio_duration);
@@ -164,8 +160,6 @@ class App extends Component {
       _this.setState({
         timeline: response.data
       });
-
-      console.log("fixed it up", _this.state.timeline);
 
     })
     .catch(function (err) {
@@ -175,10 +169,9 @@ class App extends Component {
   }
 
   render() {
-    console.log("Render App");
     return (
       <Router>
-      <div>
+      <div className="app-container">
       <Sound
       url={this.state.track.streamUrl}
       playStatus={this.state.playStatus}
@@ -189,19 +182,20 @@ class App extends Component {
       position={this.state.position}
       />
 
-      <Nav />
+      {/* <Nav /> */}
 
       <Route exact path="/" render={() =>
-        <FeedContainer
-          onLoadEpisode={this.handleLoadEpisode}
-        />
-      }/>
-      <Route path="/player" render={() =>
         <PlayerContainer
           track={this.state.track}
           timeline={this.state.timeline}
           position={this.state.position}
           onJumpTo={this.handleJumpTo}
+        />
+
+      }/>
+      <Route path="/feeds" render={() =>
+        <FeedContainer
+          onLoadEpisode={this.handleLoadEpisode}
         />
       }/>
 

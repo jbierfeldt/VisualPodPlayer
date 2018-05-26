@@ -30,15 +30,12 @@ class FeedContainer extends React.Component {
     if (process.env.NODE_ENV === 'development') {
       url = 'http://localhost:5000/podcast?url=' + url;
     }
-    console.log(url);
 
     Axios.get(url)
     .then(function (response) {
-      console.log(response);
 
       // parse Podcast xml into js Object
       parsePodcast(response.data, (err, data) => {
-        console.log(data);
 
         if (err) {
           console.error(err);
@@ -52,7 +49,6 @@ class FeedContainer extends React.Component {
           });
 
           for (let i = 0; i < data.episodes.length && i < 10; i++) {
-            console.log(data.episodes[i]);
             _this.setState({episodes: [..._this.state.episodes,
               {
                 title: data.episodes[i].title,
@@ -77,10 +73,9 @@ class FeedContainer extends React.Component {
 
   // Render method
   render () {
-    console.log("Render Feed Container");
     return (
 
-      <div className="container mainContainer">
+      <div className="container-fluid view-container">
 
         <div className="row">
           <Search onSearch={this.handleParseFeedUrl}/>
